@@ -1,2 +1,11 @@
 fastapi
 uvicorn
+
+langchain
+langchain_community
+langchain_openai
+azure-search-documents
+azure-identity
+pypdf
+
+langchain_core
