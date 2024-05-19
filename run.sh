@@ -1,13 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
 # Set app_location to current directory
 app_location=$(pwd)
 
-# Read properties file
-while IFS='=' read -r key value
-do
-    eval ${key}=\${value}
-done < "env.properties"
+set -a
+. ./env.properties
+set +a
+
+# Check if port is set. If not, exit.
+if [ -z "${port}" ]; then
+    echo "Port is not set. Please check your env.properties file."
+    exit 1
+fi
 
 docker stop langchain_sample_app > /dev/null 2>&1
 docker rm langchain_sample_app > /dev/null 2>&1
